@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FYP_20180923</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
 </resources>
