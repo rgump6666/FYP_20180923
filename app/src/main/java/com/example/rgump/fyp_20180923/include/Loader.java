@@ -1,14 +1,14 @@
 package com.example.rgump.fyp_20180923.include;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import java.io.Serializable;
 
-import com.example.rgump.fyp_20180923.include.NavigationDrawer;
-
-public class Loader {
+public class Loader implements Serializable {
 
     public AppCompatActivity context;
     public NavigationDrawer navigationDrawer;
+
+    public String my_str;
 
     public Loader(){
         navigationDrawer = new NavigationDrawer();
