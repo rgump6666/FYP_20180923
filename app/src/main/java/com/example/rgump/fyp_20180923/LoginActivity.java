@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.rgump.fyp_20180923.include.Function;
 import com.example.rgump.fyp_20180923.include.Loader;
 
 import java.io.Serializable;
 
 public class LoginActivity extends AppCompatActivity {
 
+    Function function = new Function();
     Loader loader;
 
     Button btn_login;
@@ -31,14 +33,11 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                loader.my_str = "from login";
-
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 Bundle b = new Bundle();
                 b.putSerializable("loader", loader);
                 intent.putExtras(b);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
             }
         });
     }
@@ -51,14 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-
-        loader = (Loader) data.getSerializableExtra("loader");
-        Toast.makeText(this, loader.my_str, Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent();
-        intent.putExtra("loader", loader);
-        setResult(1,intent);
-        finish();
+        loader = function.onActivityResult(requestCode, resultCode, data);
     }
 
 }

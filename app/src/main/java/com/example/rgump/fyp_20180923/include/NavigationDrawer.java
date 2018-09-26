@@ -11,9 +11,9 @@ import java.io.Serializable;
 
 import com.example.rgump.fyp_20180923.R;
 
-public class NavigationDrawer implements Serializable {
+public class NavigationDrawer {
 
-    public AppCompatActivity context;
+    public transient AppCompatActivity context;
 
     public DrawerLayout dl;
     public ActionBarDrawerToggle t;

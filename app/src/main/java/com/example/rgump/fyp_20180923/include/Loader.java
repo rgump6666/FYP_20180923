@@ -5,14 +5,10 @@ import java.io.Serializable;
 
 public class Loader implements Serializable {
 
-    public AppCompatActivity context;
-    public NavigationDrawer navigationDrawer;
+    public transient AppCompatActivity context;
+    public transient NavigationDrawer navigationDrawer;
 
-    public String my_str;
-
-    public Loader(){
-        navigationDrawer = new NavigationDrawer();
-    }
+    public Loader(){}
 
     public void setContext(AppCompatActivity context){
         this.context = context;
@@ -23,6 +19,7 @@ public class Loader implements Serializable {
     }
 
     public void setNavigationDrawer(){
+        navigationDrawer = new NavigationDrawer();
         navigationDrawer.setContext(context);
         navigationDrawer.setNavigationDrawer();
     }

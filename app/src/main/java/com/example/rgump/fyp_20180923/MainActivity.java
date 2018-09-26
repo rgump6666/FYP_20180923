@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.rgump.fyp_20180923.include.Function;
 import com.example.rgump.fyp_20180923.include.Loader;
 
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
+    Function function = new Function();
     Loader loader;
 
     @Override
@@ -21,8 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         getPassedParameter();
 
-        Toast.makeText(this, loader.my_str, Toast.LENGTH_SHORT).show();
-
         loader.setContext(this);
         loader.setGlobal();
     }
@@ -31,24 +31,23 @@ public class MainActivity extends AppCompatActivity {
         return loader.navigationDrawer.onOptionsItemSelected(item);
     }
 
+
+
+
     private void getPassedParameter(){
-        Bundle b = getIntent().getExtras();
-        if(b != null) {
-            loader = (Loader) b.getSerializable("loader");
-        }
+        loader = function.getPassedParameter(this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         super.onActivityResult(requestCode, resultCode, data);
-        Intent intent = new Intent();
+        loader = function.onActivityResult(requestCode, resultCode, data);
+    }
 
-        loader.my_str = "from main";
-
-        intent.putExtra("loader", loader);
-        setResult(1,intent);
-        finish();
+    @Override
+    public void onBackPressed() {
+        function.onBackPressed(this, loader);
     }
 
 }
